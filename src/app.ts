@@ -1,10 +1,13 @@
+import "express-async-errors";
 import express, { Application, json } from "express";
-import customerControllers from "./controllers/customer.controllers";
+import { customerRouter } from "./routers";
+import middlewares from "./middlewares";
 
 const app: Application = express();
 app.use(json());
 
-app.get("/", customerControllers.readCustomer);
-app.post("/", customerControllers.createCustomer);
+app.use("/customer", customerRouter);
+
+app.use(middlewares.handleErrors);
 
 export default app;

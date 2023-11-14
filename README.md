@@ -6,6 +6,6 @@ Application for customer registration with the potential for multiple associated
 
 COMANDOS DE INICIALIZAÇÃO:
 npm init -y
-npm i -S express dotenv typeorm pg reflect-metadata
+npm i -S express dotenv typeorm pg reflect-metadata zod express-async-errors
 npm i -D @types/express ts-node-dev - typescript
 npx tsc --init

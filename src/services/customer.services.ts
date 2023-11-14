@@ -1,21 +1,36 @@
-import { Repository } from "typeorm";
 import { Customer } from "../entities"
 import { AppDataSource } from "../data-source";
+import { iCustomerCreate, iCustomerRead, iCustomerRepo } from "../interfaces";
+import { customerRepo } from "../repositories";
+import { AppError } from "../errors";
 
-const createCustomer = async (payload: Omit<Customer, "id">): Promise<Customer> => {
-    const repo: Repository<Customer> = AppDataSource.getRepository(Customer);
+const readCustomer = async (): Promise<iCustomerRead> => {
+    return await customerRepo.find();
+};
 
-    const customer: Customer = await repo.save(payload)
+const retrieveCustomer = async (customerId: number): Promise<Customer> => {
+    const customer: Customer | null = await customerRepo.findOne({ where: { id: customerId } });
+
+    if (!customer) {
+        throw new AppError("Customer not found", 404);
+    };
 
     return customer;
-}
+};
 
-const readCustomer = async (): Promise<Array<Customer>> => {
-    const repo: Repository<Customer> = AppDataSource.getRepository(Customer);
+const createCustomer = async (payload: iCustomerCreate): Promise<Customer> => {
+    return await customerRepo.save(payload);
+};
 
-    const customer: Array<Customer> = await repo.find();
+const deleteCustomer = async (customerId: number): Promise<void> => {
+    const customer: Customer | null = await customerRepo.findOne({ where: { id: customerId } });
 
-    return customer;
-}
+    if (!customer) {
+        throw new AppError("Customer not found", 404);
+    };
 
-export default { createCustomer, readCustomer }
+    await customerRepo.remove(customer);
+};
+
+
+export default { readCustomer, retrieveCustomer, createCustomer };
