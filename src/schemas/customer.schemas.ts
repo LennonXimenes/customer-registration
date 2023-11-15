@@ -9,7 +9,7 @@ const customerSchema = z.object({
     createdAt: z.string()
 });
 
-const customerCreateSchema = customerSchema.omit({ id: true });
+const customerCreateSchema = customerSchema.omit({ id: true, createdAt: true });
 const customerUpdateSchema = customerCreateSchema.partial();
 
 export { customerCreateSchema, customerUpdateSchema };
