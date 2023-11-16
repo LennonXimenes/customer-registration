@@ -10,6 +10,8 @@ const customerSchema = z.object({
 });
 
 const customerCreateSchema = customerSchema.omit({ id: true, createdAt: true });
+const customerWithoutPassSchema = customerSchema.omit({ password: true });
+const customerReadSchema = customerWithoutPassSchema.array();
 const customerUpdateSchema = customerCreateSchema.partial();
 
-export { customerCreateSchema, customerUpdateSchema };
+export { customerSchema, customerWithoutPassSchema, customerCreateSchema, customerReadSchema, customerUpdateSchema };

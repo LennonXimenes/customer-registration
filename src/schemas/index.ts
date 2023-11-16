@@ -1,3 +1,4 @@
-import { customerCreateSchema, customerUpdateSchema } from "./customer.schemas";
+import { customerSchema, customerWithoutPassSchema, customerCreateSchema, customerReadSchema, customerUpdateSchema } from "./customer.schemas";
+import { contactSchema, contactCreateSchema, contactUpdateSchema } from "./contact.schemas";
 
-export { customerCreateSchema, customerUpdateSchema };
+export { customerSchema, customerWithoutPassSchema, customerCreateSchema, customerReadSchema, customerUpdateSchema, contactSchema, contactCreateSchema, contactUpdateSchema };

@@ -1,13 +1,18 @@
 import { Customer } from "../entities";
-import { iCustomerCreate, iCustomerRead, iCustomerUpdate } from "../interfaces";
+import { iCustomerCreate, iCustomerRead, iCustomerReturn, iCustomerUpdate } from "../interfaces";
 import { customerRepo } from "../repositories";
+import { customerReadSchema, customerWithoutPassSchema } from "../schemas";
 
 const readCustomer = async (): Promise<iCustomerRead> => {
-    return await customerRepo.find();
+    return customerReadSchema.parse(await customerRepo.find());
 };
 
-const createCustomer = async (payload: iCustomerCreate): Promise<Customer> => {
-    return await customerRepo.save(payload);
+const createCustomer = async (payload: iCustomerCreate): Promise<iCustomerReturn> => {
+    const customer: Customer = customerRepo.create(payload);
+
+    await customerRepo.save(customer)
+
+    return customerWithoutPassSchema.parse(customer)
 };
 
 const updateCustomer = async (customer: Customer, payload: iCustomerUpdate): Promise<Customer> => {

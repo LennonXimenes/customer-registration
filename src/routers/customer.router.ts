@@ -5,13 +5,13 @@ import { customerCreateSchema, customerUpdateSchema } from "../schemas";
 
 export const customerRouter: Router = Router();
 
-customerRouter.use("/:customerId", middlewares.verifyId);
+customerRouter.use("/:id", middlewares.verifyId);
 
 customerRouter.get("/",
     customerControllers.readCustomer
 );
 
-customerRouter.get("/:customerId",
+customerRouter.get("/:id",
     customerControllers.retrieveCustomer
 );
 
@@ -20,11 +20,11 @@ customerRouter.post("/",
     customerControllers.createCustomer
 );
 
-customerRouter.patch("/:customerId",
+customerRouter.patch("/:id",
     middlewares.validateBody(customerUpdateSchema),
     customerControllers.updateCustomer
 );
 
-customerRouter.delete("/:customerId",
+customerRouter.delete("/:id",
     customerControllers.deleteCustomer
 );
