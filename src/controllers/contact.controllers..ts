@@ -10,7 +10,11 @@ const readContact = async (req: Request, res: Response): Promise<Response> => {
 };
 
 const retrieveContact = async (req: Request, res: Response): Promise<Response> => {
-    return res.status(200).json(res.locals.foundId);
+    const id: number = Number(req.params.id);
+
+    const contact = await contactServices.retrieveContact(id);
+
+    return res.status(200).json(contact);
 };
 
 const createContact = async (req: Request, res: Response): Promise<Response> => {
@@ -22,16 +26,16 @@ const createContact = async (req: Request, res: Response): Promise<Response> => 
 };
 
 const updateContact = async (req: Request, res: Response): Promise<Response> => {
-    const { foundId } = res.locals;
+    const { foundContact } = res.locals;
     const { body } = req;
 
-    const contact: Contact = await contactServices.updateContact(foundId, body);
+    const contact: Contact = await contactServices.updateContact(foundContact, body);
 
     return res.status(200).json(contact);
 };
 
 const deleteContact = async (req: Request, res: Response): Promise<Response> => {
-    await contactServices.deleteContact(res.locals.foundId);
+    await contactServices.deleteContact(res.locals.foundContact);
 
     return res.status(204).json();
 };

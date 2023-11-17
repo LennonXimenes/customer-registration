@@ -7,6 +7,12 @@ const readContact = async (): Promise<iContactRead> => {
     return await contactRepo.find();
 };
 
+const retrieveContact = async (customerId: number): Promise<Contact | null> => {
+    const contact = await contactRepo.findOne({ where: { id: customerId } });
+
+    return contact;
+}
+
 const createContact = async (payload: iContactCreate, customer: Customer): Promise<any> => {
     const contact: Contact = contactRepo.create({ ...payload, customer });
 
@@ -23,4 +29,4 @@ const deleteContact = async (contact: Contact): Promise<void> => {
     await contactRepo.remove(contact);
 };
 
-export default { readContact, createContact, updateContact, deleteContact };
+export default { readContact, retrieveContact, createContact, updateContact, deleteContact };

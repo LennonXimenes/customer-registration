@@ -5,7 +5,7 @@ import { contactCreateSchema, contactUpdateSchema } from "../schemas";
 
 export const contactRouter: Router = Router();
 
-contactRouter.use("/:id", middlewares.verifyId);
+contactRouter.use("/:id", middlewares.verifyContact);
 
 contactRouter.get("/",
     contactControllers.readContact
@@ -15,7 +15,7 @@ contactRouter.get("/:id",
     contactControllers.retrieveContact
 );
 
-contactRouter.post("/:id/customer",
+contactRouter.post("/:id",
     middlewares.validateBody(contactCreateSchema),
     contactControllers.createContact
 );
