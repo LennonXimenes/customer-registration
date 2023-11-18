@@ -23,7 +23,7 @@ export default class Customer {
     createdAt: Date;
 
     @OneToMany(() => Contact, (cont) => cont.customer)
-    contacts: Array<Customer>;
+    contacts: Array<Contact>;
 
     @BeforeInsert()
     @BeforeUpdate()

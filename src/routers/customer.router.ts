@@ -15,6 +15,10 @@ customerRouter.get("/:id",
     customerControllers.retrieveCustomer
 );
 
+customerRouter.get("/:id/contacts",
+    customerControllers.retrieveCustomerWithContacts
+);
+
 customerRouter.post("/",
     middlewares.validateBody(customerCreateSchema),
     customerControllers.createCustomer
