@@ -1,12 +1,13 @@
-import { CustomerProvider } from "./providers/CustomerContext";
+import { useContext } from "react";
 import { RoutesMain } from "./routes/RoutesMain";
+import { CustomerContext } from "./providers/CustomerContext";
 
 function App() {
+  const { loading } = useContext(CustomerContext);
+
   return (
     <div className="App">
-      <CustomerProvider>
-        <RoutesMain />
-      </CustomerProvider>
+      {loading ? <p>Carregando..</p> : <RoutesMain />}
     </div>
   );
 }

@@ -1,15 +1,16 @@
 import { useForm } from "react-hook-form";
 import { Input } from "../Input";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CustomerContext } from "../../providers/CustomerContext";
 
 export const LoginForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [loading, setLoading] = useState(false);
 
     const { customerLogin } = useContext(CustomerContext);
 
     const submit = (formData) => {
-        customerLogin(formData);
+        customerLogin(formData, setLoading);
     };
 
     return (
@@ -31,7 +32,9 @@ export const LoginForm = () => {
                 error={errors.password}
             />
 
-            <button>Submit</button>
+            <button type="submit" disabled={loading}>
+                {loading ? "Entrando.." : "Entrar"}
+            </button>
         </form>
 
     );
