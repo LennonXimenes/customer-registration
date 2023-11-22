@@ -6,6 +6,7 @@ const customerSchema = z.object({
     email: z.string().email().max(45),
     password: z.string().max(120),
     phone: z.string().max(11),
+    admin: z.boolean().default(false),
     createdAt: z.string()
 });
 

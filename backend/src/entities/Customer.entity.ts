@@ -18,6 +18,9 @@ export default class Customer {
 
     @Column({ length: 11, unique: true })
     phone: string;
+    
+    @Column({ default: false })
+    admin: boolean;
 
     @CreateDateColumn({ type: "date" })
     createdAt: Date;

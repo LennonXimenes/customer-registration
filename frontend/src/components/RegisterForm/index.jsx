@@ -2,22 +2,15 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerFormSchema } from "./registerForm";
 import { Input } from "../Input";
-import { api } from "../../services";
+import { CustomerContext } from "../../providers/CustomerContext";
+import { useContext } from "react";
 
 export const RegisterForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(registerFormSchema),
     });
 
-    const customerRegister = async (FormData) => {
-        try {
-            const { data } = await api.post("/customer", FormData);
-            console.log("Cadastro efetuado com sucesso!")
-
-        } catch (error) {
-            console.error(error);
-        };
-    };
+    const { customerRegister } = useContext(CustomerContext);
 
     const submit = (FormData) => {
         customerRegister(FormData);
