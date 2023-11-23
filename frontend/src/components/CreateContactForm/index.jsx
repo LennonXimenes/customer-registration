@@ -10,7 +10,6 @@ export const CreateContactForm = () => {
     const { CreateContact } = useContext(ContactContext);
 
     const submit = (formData) => {
-        console.log(formData);
         CreateContact(formData);
     };
 

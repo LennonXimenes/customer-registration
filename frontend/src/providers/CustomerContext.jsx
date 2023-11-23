@@ -25,6 +25,8 @@ export const CustomerProvider = ({ children }) => {
                 navigate(currentPath);
             } catch (error) {
                 console.error(error);
+                localStorage.removeItem("@TOKEN");
+                localStorage.removeItem("@CUSTOMERID");
             } finally {
                 setLoading(false);
             };
