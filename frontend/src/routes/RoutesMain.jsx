@@ -5,6 +5,7 @@ import { SuccessPage } from "../pages/SuccessPage";
 import { DashboardPage } from "../pages/DashboardPage";
 import { ProtectedRoutes } from "../components/ProtectedRoutes";
 import { PublicRoutes } from "../components/PublicRoutes";
+import { ContactProvider } from "../providers/ContactContext";
 
 export const RoutesMain = () => {
 
@@ -17,7 +18,13 @@ export const RoutesMain = () => {
             </Route>
 
             <Route element={<ProtectedRoutes />}>
-                <Route path="/dashboard" element={<DashboardPage />} />
+                <Route path="/dashboard"
+                    element={
+                        <ContactProvider>
+                            < DashboardPage />
+                        </ContactProvider>
+                    }
+                />
             </Route>
         </Routes >
     );

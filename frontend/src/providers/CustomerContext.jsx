@@ -32,7 +32,7 @@ export const CustomerProvider = ({ children }) => {
         if (token && id) {
             loadCustomer();
         };
-    }, [])
+    }, []);
 
     const navigate = useNavigate();
 
@@ -40,6 +40,7 @@ export const CustomerProvider = ({ children }) => {
         try {
             await api.post("/customer", formData);
             console.log("Cadastro realizado com sucesso!");
+            navigate("/");
         } catch (error) {
             console.log(error);
         };

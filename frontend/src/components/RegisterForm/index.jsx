@@ -14,6 +14,7 @@ export const RegisterForm = () => {
 
     const submit = (FormData) => {
         customerRegister(FormData);
+        
     };
 
     return (
