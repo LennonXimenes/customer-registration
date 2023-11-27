@@ -39,6 +39,22 @@ export const ContactProvider = ({ children }) => {
         }
     };
 
+    const updateContact = async (formData, contactId) => {
+        const id = localStorage.getItem("@CUSTOMERID");
+        try {
+            const { data } = await api.patch(`/contact/${contactId}`, formData);
+            setContact((contact) => contact.map(cont => {
+                if (cont.id === id) {
+                    return { ...cont, ...formData };
+                } else {
+                    return cont;
+                }
+            }))
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     const deleteContact = async (id) => {
         try {
             await api.delete(`/contact/${id}`);
@@ -49,7 +65,7 @@ export const ContactProvider = ({ children }) => {
     };
 
     return (
-        <ContactContext.Provider value={{ loading, customer, contact, CreateContact, deleteContact }}>
+        <ContactContext.Provider value={{ loading, customer, contact, CreateContact, updateContact, deleteContact }}>
             {children}
         </ContactContext.Provider>
     );
