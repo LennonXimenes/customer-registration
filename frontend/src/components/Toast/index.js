@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 
-export const toastSuccess = (frase) => {
-    toast.success(frase, {
+export const toastSuccess = (message) => {
+    toast.success(message, {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -13,8 +13,8 @@ export const toastSuccess = (frase) => {
     });
 }
 
-export const toastError = (frase) => {
-    toast.error(frase, {
+export const toastError = (message) => {
+    toast.error(message, {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,

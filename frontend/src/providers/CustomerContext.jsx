@@ -69,8 +69,24 @@ export const CustomerProvider = ({ children }) => {
         navigate("/");
     };
 
+    const updateCustomer = async (formData) => {
+        const id = localStorage.getItem("@CUSTOMERID");
+        try {
+            const { data } = await api.patch(`/customer/${id}`, formData);
+            setUser((prevUser) => {
+                if (prevUser.id === id) {
+                    return { ...prevUser, ...formData };
+                } else {
+                    return prevUser;
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
-        <CustomerContext.Provider value={{ user, customerRegister, customerLogin, customerLogout, loading }}>
+        <CustomerContext.Provider value={{ user, customerRegister, customerLogin, customerLogout, loading, updateCustomer }}>
             {children}
         </CustomerContext.Provider>
     );

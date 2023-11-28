@@ -30,9 +30,6 @@ export const ContactProvider = ({ children }) => {
         const id = localStorage.getItem("@CUSTOMERID");
         try {
             const { data: newContact } = await api.post(`/contact/${id}`, formData);
-            // console.log(newContact); // Visualizar o novo contato criado
-            // console.log(customer); // Dono
-            // console.log(contact); // Contato add pelo Dono
             setContact((prevContacts) => [...prevContacts, newContact]);
         } catch (error) {
             console.error(error);

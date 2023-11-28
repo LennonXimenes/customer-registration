@@ -14,7 +14,6 @@ export const RegisterForm = () => {
 
     const submit = (FormData) => {
         customerRegister(FormData);
-        
     };
 
     return (
@@ -57,6 +56,7 @@ export const RegisterForm = () => {
                 placeholder="Seu telefone"
                 {...register("phone")}
                 error={errors.phone}
+                maxLength={11}
             />
 
             <button type="submit">submit</button>

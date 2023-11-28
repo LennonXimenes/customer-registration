@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
-import { StyledForm, StyledModal, StyledTitleButton } from "../Modal/style.js";
-import { Input } from "../Input/index.jsx";
-import { ContactContext } from "../../providers/ContactContext.jsx";
-import { toastError } from "../Toast/index.js";
+import { StyledForm, StyledModal, StyledTitleButton } from "../style.js";
+import { Input } from "../../Input/index.jsx";
+import { ContactContext } from "../../../providers/ContactContext.jsx";
+import { toastError } from "../../Toast/index.js";
 
-export const Modal = ({ children, setIsOpen, currentCont, setCurrentContact }) => {
+export const ModalEditContact = ({ children, setIsOpenEdit, currentCont, nameContact }) => {
     const { contact, updateContact, deleteContact } = useContext(ContactContext);
     const { handleSubmit } = useForm({});
 
@@ -16,10 +16,11 @@ export const Modal = ({ children, setIsOpen, currentCont, setCurrentContact }) =
 
     const modalRef = useRef(null);
 
+
     useEffect(() => {
         function handleOutClick(e) {
             if (!modalRef.current?.contains(e.target)) {
-                setIsOpen(false);
+                setIsOpenEdit(false);
             }
         }
         window.addEventListener("mousedown", handleOutClick);
@@ -64,9 +65,12 @@ export const Modal = ({ children, setIsOpen, currentCont, setCurrentContact }) =
             }
             formData.phone = phone
         }
-        console.log(formData)
-        setIsOpen(false);
-        updateContact(formData, currentCont)
+        setIsOpenEdit(false);
+        updateContact(formData, currentCont);
+    }
+
+    const exclude = () => {
+        deleteContact(currentCont)
     }
 
     return (
@@ -74,15 +78,15 @@ export const Modal = ({ children, setIsOpen, currentCont, setCurrentContact }) =
             <div ref={modalRef} className="container">
 
                 <StyledTitleButton>
-                    <h1>Cadastrar Tecnologia</h1>
-                    <button ref={buttonRef} onClick={() => setIsOpen(false)}>FECHAR</button>
+                    <h1>Editar {nameContact.contName}</h1>
+                    <button ref={buttonRef} onClick={() => setIsOpenEdit(false)}>FECHAR</button>
                 </StyledTitleButton>
 
                 <StyledForm onSubmit={handleSubmit(submit)}>
                     <Input
-                        label="Nome Completo"
+                        label="Nome"
                         type="text"
-                        placeholder="Seu nome completo"
+                        placeholder="Nome do contato"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                     />
@@ -103,7 +107,8 @@ export const Modal = ({ children, setIsOpen, currentCont, setCurrentContact }) =
                         onChange={(e) => setPhone(e.target.value)}
                         maxLength={11}
                     />
-                    <button type="submit" className="register">Confirmar</button>
+                    <button type="submit" >Confirmar</button>
+                    <button type="submit" onClick={() => exclude()}>Excluir</button>
                 </StyledForm>
                 {children}
             </div>
