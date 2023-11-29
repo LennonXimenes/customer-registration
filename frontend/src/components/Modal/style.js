@@ -67,7 +67,7 @@ export const StyledForm = styled.form `
     label {
         margin-top: 1rem;
     }
-
+    
     input {
         height: 3.125rem;
         width: 100%;
