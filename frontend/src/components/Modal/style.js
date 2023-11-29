@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
-export const StyledModal = styled.dialog`
+export const StyledModal = styled.dialog `
+    height: auto;
+    
+    width: 100%;
     position: fixed;
-
+    
     display: flex;
     align-items: center;
     justify-content: center;
-
+    
     inset: 0;
-
-    height: 100vh;
-    width: 100%;
     
     background: rgba(0,0,0,.3);
     
@@ -20,9 +20,9 @@ export const StyledModal = styled.dialog`
         display: flex;
         flex-direction: column;
 
-        height: 100%;
+        height: auto;
         min-height: 275px;
-        max-height: 350px;
+        max-height: fit-content;
         width: 100%;
         min-width: 275px;
         max-width: 370px;
@@ -31,10 +31,14 @@ export const StyledModal = styled.dialog`
 
         background-color: var(--color--grey-3);
     }
+
+    label {
+        margin-top: 2rem;
+    }
 `
 
-export const StyledTitleButton = styled.div`
-    height: 50px;
+export const StyledTitleButton = styled.div `
+    height: 3.125rem;
 
     display: flex;
     justify-content: space-between;
@@ -42,35 +46,42 @@ export const StyledTitleButton = styled.div`
 
     padding: 1rem;
 
-    border-radius: 4px 4px 0px 0px;
+    margin-bottom: 1rem;
+
+    border-radius: .25rem .25rem 0rem 0rem;
     background-color: var(--color--grey-2);
+
+    button {
+        margin-top: .0625rem;
+    }
 `
 
-export const StyledForm = styled.form`
+export const StyledForm = styled.form `
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: left;
 
-    padding: 0 1rem;;
+    padding: 0 1rem;
 
     label {
         margin-top: 1rem;
     }
 
     input {
-        height: 50px;
+        height: 3.125rem;
         width: 100%;
 
-        margin-top: 1rem;
-        padding: 10px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+        padding: .625rem;
         
         background-color: var(--color--grey-2);
         color: var(--color--grey-0);
 
-        border-radius: 4px;
+        border-radius: .25rem;
 
-        font-size: 16px;
+        font-size: 1rem;
 
         :hover {
             border: 1px solid var(--color--grey-0);
@@ -108,7 +119,8 @@ export const StyledForm = styled.form`
         height: 50px;
         width: 100%;
 
-        margin-top: 1.5rem;
+        margin-top: 0.8rem;
+        margin-bottom: 1.5rem;
         padding: 10px;
         
         background-color: var(--color-primary);
@@ -125,9 +137,32 @@ export const StyledForm = styled.form`
             background-color: var(--color--primary-focus);
         }
     }
+
+    .delete{
+        height: 50px;
+        width: 100%;
+
+        margin-top: 0.8rem;
+        margin-bottom: 1.5rem;
+        padding: 10px;
+        
+        background-color: var(--color--grey-2);
+        color: var(--color--grey-0);
+        border-radius: 4px;
+
+        font-size: 16px;
+
+        :hover {
+            background-color: var(--color--primary-hover);
+        }
+
+        :focus {
+            background-color: var(--color--primary-0);
+        }
+    }
 `
 
-export const StyledBtn = styled.div`
+export const StyledBtn = styled.div `
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -139,6 +174,7 @@ export const StyledBtn = styled.div`
         height: 50px;
         
         margin-top: 1.5rem;
+        margin-bottom: 1rem;
         padding: 10px;
         
         color: var(--color--grey-0);

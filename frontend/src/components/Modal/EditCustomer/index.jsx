@@ -5,6 +5,8 @@ import { StyledForm, StyledModal, StyledTitleButton } from "../style.js";
 import { Input } from "../../Input/index.jsx";
 import { toastError } from "../../Toast/index.js";
 import { CustomerContext } from "../../../providers/CustomerContext.jsx";
+import { AiFillCloseSquare } from "react-icons/ai";
+import { FontTitle } from "../../../styles/typograph.js";
 
 export const ModalCustomer = ({ children, setIsOpenCustomer }) => {
     const { user, updateCustomer } = useContext(CustomerContext);
@@ -68,8 +70,8 @@ export const ModalCustomer = ({ children, setIsOpenCustomer }) => {
             <div ref={modalRef} className="container">
 
                 <StyledTitleButton>
-                    <h1>Editar</h1>
-                    <button ref={buttonRef} onClick={() => setIsOpenCustomer(false)}>FECHAR</button>
+                    <FontTitle>Editar</FontTitle>
+                    <button ref={buttonRef} onClick={() => setIsOpenCustomer(false)}><AiFillCloseSquare size={30} color={"#212529"}/></button>
                 </StyledTitleButton>
 
                 <StyledForm onSubmit={handleSubmit(submit)}>

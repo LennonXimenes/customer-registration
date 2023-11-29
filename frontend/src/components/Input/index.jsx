@@ -1,11 +1,12 @@
 import { forwardRef } from "react";
+import { FontLabel, FontParagraph } from "../../styles/typograph";
 
 export const Input = forwardRef(({ label, error, onChange, maxLength, ...rest }, ref) => {
     return (
         <div>
-            <label>{label}</label>
+            <FontLabel font="big">{label}</FontLabel>
             <input ref={ref} onChange={onChange} maxLength={maxLength} {...rest} />
-            {error ? <p>{error.message}</p> : null}
+            {error ? <FontParagraph>{error.message}</FontParagraph> : null}
         </div>
     );
 });

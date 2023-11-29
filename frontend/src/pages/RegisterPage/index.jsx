@@ -1,14 +1,16 @@
 import { RegisterForm } from "../../components/RegisterForm";
-import { Link } from "react-router-dom";
-
+import { Header } from "../../components/Header";
+import { StyledBox, StyledMain } from "../HomePage/styled";
 
 export const RegisterPage = () => {
     return (
-        <div>
-            <Link to="/">voltar</Link>
-
-            <h1>Register Page</h1>
-            <RegisterForm />
-        </div>
+        <StyledBox>
+            <Header />
+            <StyledMain>
+                <div>
+                    <RegisterForm />
+                </div>
+            </StyledMain>
+        </StyledBox>
     );
 }

@@ -5,6 +5,9 @@ import { CustomerContext } from "../../../providers/CustomerContext";
 import { ContactContext } from "../../../providers/ContactContext";
 import { StyledForm, StyledModal, StyledTitleButton } from "../style";
 import { toastError } from "../../Toast";
+import { AiFillCloseSquare } from "react-icons/ai";
+import { FontTitle } from "../../../styles/typograph";
+
 
 export const ModalCreateContact = ({ children, setIsOpenCreate }) => {
     const { handleSubmit } = useForm();
@@ -69,15 +72,13 @@ export const ModalCreateContact = ({ children, setIsOpenCreate }) => {
         CreateContact(formData);
     }
 
-
-
     return (
         <StyledModal role="dialog">
             <div ref={modalRef} className="container">
 
                 <StyledTitleButton>
-                    <h1>Cadastrar Contato</h1>
-                    <button ref={buttonRef} onClick={() => setIsOpenCreate(false)}>FECHAR</button>
+                    <FontTitle>Cadastrar Contato</FontTitle>
+                    <button ref={buttonRef} onClick={() => setIsOpenCreate(false)}><AiFillCloseSquare size={30} color={"#212529"} /></button>
                 </StyledTitleButton>
 
                 <StyledForm onSubmit={handleSubmit(submit)}>

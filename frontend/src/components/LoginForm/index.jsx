@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 import { Input } from "../Input";
 import { useContext, useState } from "react";
 import { CustomerContext } from "../../providers/CustomerContext";
+import { Link } from "react-router-dom";
+import { StyledBoxBtn, StyledForm } from "./style";
+import { FontTitle } from "../../styles/typograph";
 
 export const LoginForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -14,8 +17,8 @@ export const LoginForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(submit)}>
-            <h1>Faça seu login</h1>
+        <StyledForm onSubmit={handleSubmit(submit)}>
+            <FontTitle>Faça seu login</FontTitle>
             <Input
                 label="E-mail"
                 type="email"
@@ -32,10 +35,14 @@ export const LoginForm = () => {
                 error={errors.password}
             />
 
-            <button type="submit" disabled={loading}>
-                {loading ? "Entrando.." : "Entrar"}
-            </button>
-        </form>
+            <StyledBoxBtn>
+                <button type="submit" disabled={loading}>
+                    {loading ? "Entrando.." : "Entrar"}
+                </button>
+                <button><Link to="register">Cadastrar</Link></button>
+            </StyledBoxBtn>
+
+        </StyledForm>
 
     );
 };

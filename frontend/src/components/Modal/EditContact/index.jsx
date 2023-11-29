@@ -5,6 +5,9 @@ import { StyledForm, StyledModal, StyledTitleButton } from "../style.js";
 import { Input } from "../../Input/index.jsx";
 import { ContactContext } from "../../../providers/ContactContext.jsx";
 import { toastError } from "../../Toast/index.js";
+import { FontTitle } from "../../../styles/typograph.js";
+import { AiFillCloseSquare } from "react-icons/ai";
+
 
 export const ModalEditContact = ({ children, setIsOpenEdit, currentCont, nameContact }) => {
     const { contact, updateContact, deleteContact } = useContext(ContactContext);
@@ -78,8 +81,8 @@ export const ModalEditContact = ({ children, setIsOpenEdit, currentCont, nameCon
             <div ref={modalRef} className="container">
 
                 <StyledTitleButton>
-                    <h1>Editar {nameContact.contName}</h1>
-                    <button ref={buttonRef} onClick={() => setIsOpenEdit(false)}>FECHAR</button>
+                    <FontTitle>Editar {nameContact.contName}</FontTitle>
+                    <button ref={buttonRef} onClick={() => setIsOpenEdit(false)}><AiFillCloseSquare size={30} color={"#212529"} /></button>
                 </StyledTitleButton>
 
                 <StyledForm onSubmit={handleSubmit(submit)}>
@@ -107,8 +110,11 @@ export const ModalEditContact = ({ children, setIsOpenEdit, currentCont, nameCon
                         onChange={(e) => setPhone(e.target.value)}
                         maxLength={11}
                     />
-                    <button type="submit" >Confirmar</button>
-                    <button type="submit" onClick={() => exclude()}>Excluir</button>
+
+                    <div>
+                        <button type="submit" className="register">Confirmar</button>
+                        <button type="submit" onClick={() => exclude()} className="delete">Excluir</button>
+                    </div>
                 </StyledForm>
                 {children}
             </div>

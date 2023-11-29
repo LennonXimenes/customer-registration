@@ -4,6 +4,10 @@ import { registerFormSchema } from "./registerForm";
 import { Input } from "../Input";
 import { CustomerContext } from "../../providers/CustomerContext";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { FontTitle } from "../../styles/typograph";
+import { StyledBoxBtn, StyledForm } from "../LoginForm/style";
+
 
 export const RegisterForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -17,7 +21,8 @@ export const RegisterForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(submit)}>
+        <StyledForm onSubmit={handleSubmit(submit)}>
+            <FontTitle>Registre-se</FontTitle>
             <Input
                 label="Nome Completo"
                 type="text"
@@ -59,7 +64,10 @@ export const RegisterForm = () => {
                 maxLength={11}
             />
 
-            <button type="submit">submit</button>
-        </form>
+            <StyledBoxBtn>
+                <button type="submit">Registrar</button>
+                <button><Link to="/">Voltar</Link></button>
+            </StyledBoxBtn>
+        </StyledForm>
     );
 };
