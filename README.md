@@ -1,6 +1,5 @@
 # customer-registration
 Application Documentation: Customer Registration
-
 Description:
 The Customer Registration application is a customer registration system supporting multiple associated contacts. It provides the capability to manage customers and their contacts, as well as furnishing detailed reports about the information associated with each client's contacts.
 
@@ -70,7 +69,7 @@ CORS: Configuration of security policies for sharing resources among different o
 
 ___
 Documentação da Aplicação Customer Registration
-Descrição
+Descrição:
 A aplicação Customer Registration é um sistema de registro de clientes com suporte para múltiplos contatos associados. Ela oferece a capacidade de gerenciar clientes e seus contatos, além de fornecer relatórios detalhados sobre as informações dos contatos vinculados a cada cliente.
 
 Instalação:
