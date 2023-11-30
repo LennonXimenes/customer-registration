@@ -7,6 +7,10 @@ export const StyledContainer = styled.main `
     align-items: center;
 
     button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         height: 2rem;
         width: 10%;
 
@@ -20,7 +24,6 @@ export const StyledContainer = styled.main `
         border-radius: .25rem;
 
         font-size: 1rem;
-        text-align: center;
     }
 
     ul {

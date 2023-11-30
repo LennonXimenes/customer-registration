@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { api } from "../../src/services";
+import { toastError } from "../components/Toast";
 
 export const CustomerContext = createContext({});
 
@@ -58,6 +59,7 @@ export const CustomerProvider = ({ children }) => {
             navigate("/dashboard");
         } catch (error) {
             console.error(error);
+            toastError("E-mail ou senha inválidos");
         } finally {
             setLoading(false);
         };

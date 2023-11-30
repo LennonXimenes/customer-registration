@@ -11,7 +11,6 @@ import { FontTitle } from "../../../styles/typograph";
 
 export const ModalCreateContact = ({ children, setIsOpenCreate }) => {
     const { handleSubmit } = useForm();
-    const { customer } = useContext(CustomerContext);
     const { CreateContact } = useContext(ContactContext);
 
     const [fullName, setFullName] = useState("");
@@ -49,27 +48,22 @@ export const ModalCreateContact = ({ children, setIsOpenCreate }) => {
     }, []);
 
     const submit = () => {
-        let formData = {}
-        if (fullName) {
+        let formData = {};
+        if (fullName && email && phone) {
             if (fullName.length < 3) {
                 return toastError("O nome precisa conter mais de 3 caracteres");
-            }
-            formData.fullName = fullName
-        }
-        if (email) {
-            if (!email.includes("@") || !email.includes(".com")) {
+            } else if (!email.includes("@") || !email.includes(".com")) {
                 return toastError("O email precisa seguir o padrão exemplo@mail.com");
-            }
-            formData.email = email
-        }
-        if (phone) {
-            if (phone.length < 11) {
+            } else if (phone.length < 11) {
                 return toastError("O telefone deve conter 11 caracteres");
+            } else {
+                formData = { fullName, email, phone };
+                setIsOpenCreate(false);
+                CreateContact(formData);
             }
-            formData.phone = phone
+        } else {
+            return toastError("Por favor, preencha todos os campos");
         }
-        setIsOpenCreate(false);
-        CreateContact(formData);
     }
 
     return (

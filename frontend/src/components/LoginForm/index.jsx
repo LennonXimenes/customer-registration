@@ -5,9 +5,15 @@ import { CustomerContext } from "../../providers/CustomerContext";
 import { Link } from "react-router-dom";
 import { StyledBoxBtn, StyledForm } from "./style";
 import { FontTitle } from "../../styles/typograph";
+import { toastError } from "../Toast";
+import loginUserSchema from "./loginUserSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 
 export const LoginForm = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: zodResolver(loginUserSchema)
+    });
     const [loading, setLoading] = useState(false);
 
     const { customerLogin } = useContext(CustomerContext);
