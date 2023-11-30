@@ -10,7 +10,7 @@ import { AiFillCloseSquare } from "react-icons/ai";
 
 
 export const ModalEditContact = ({ children, setIsOpenEdit, currentCont, nameContact }) => {
-    const { contact, updateContact, deleteContact } = useContext(ContactContext);
+    const { contact, updateContact, deleteContact, } = useContext(ContactContext);
     const { handleSubmit } = useForm({});
 
     const [fullName, setFullName] = useState("");
@@ -70,6 +70,7 @@ export const ModalEditContact = ({ children, setIsOpenEdit, currentCont, nameCon
         }
         setIsOpenEdit(false);
         updateContact(formData, currentCont);
+        window.location.reload();
     }
 
     const exclude = () => {

@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { api } from "../../src/services";
-import { toastError } from "../components/Toast";
+import { toastError, toastSuccess } from "../components/Toast";
 
 export const CustomerContext = createContext({});
 
@@ -42,7 +42,7 @@ export const CustomerProvider = ({ children }) => {
     const customerRegister = async (formData) => {
         try {
             await api.post("/customer", formData);
-            console.log("Cadastro realizado com sucesso!");
+            toastSuccess("Cadastro realizado com sucesso!");
             navigate("/");
         } catch (error) {
             console.log(error);

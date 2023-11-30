@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CustomerContext } from "../../providers/CustomerContext";
 import { ContactContext } from "../../providers/ContactContext";
 import { ModalCreateContact } from "../../components/Modal/CreateContact";
@@ -10,7 +10,7 @@ import { StyledContainer } from "./style";
 
 export const DashboardPage = () => {
     const { user } = useContext(CustomerContext);
-    const { contact } = useContext(ContactContext);
+    const { contact, setContact } = useContext(ContactContext);
 
     const [isOpenCustomer, setIsOpenCustomer] = useState(null);
 
@@ -41,15 +41,15 @@ export const DashboardPage = () => {
                 {isOpenCustomer ? <ModalCustomer user={user} setIsOpenCustomer={setIsOpenCustomer}></ModalCustomer> : null}
 
 
-                <button onClick={() => openModalCreate()}>Criar contato</button>
+                <button onClick={() => openModalCreate()}>Adicionar contato</button>
 
                 <ul>
                     {Array.isArray(contact) && contact?.length > 0 ? (
                         contact.map((currentCont, index) => (
                             <li onClick={() => openModalEdit(currentCont.id, { contName: currentCont.fullName }, currentCont)} key={index}>
-                                <FontTitle>{currentCont?.fullName}</FontTitle>
-                                <FontParagraph font={"big"}>{currentCont?.email}</FontParagraph>
-                                <FontParagraph font={"big"}>{currentCont?.phone}</FontParagraph>
+                                <FontParagraph font={"big"}><b>Nome: </b>{currentCont?.fullName}</FontParagraph>
+                                <FontParagraph font={"big"}><b>Email:</b> {currentCont?.email}</FontParagraph>
+                                <FontParagraph font={"big"}><b>Telefone:</b> {currentCont?.phone}</FontParagraph>
                             </li>
                         ))
                     ) : (

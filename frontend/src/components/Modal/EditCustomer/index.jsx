@@ -63,6 +63,7 @@ export const ModalCustomer = ({ children, setIsOpenCustomer }) => {
         }
         setIsOpenCustomer(false);
         updateCustomer(formData);
+        window.location.reload();
     }
 
     return (
@@ -71,7 +72,7 @@ export const ModalCustomer = ({ children, setIsOpenCustomer }) => {
 
                 <StyledTitleButton>
                     <FontTitle>Editar</FontTitle>
-                    <button ref={buttonRef} onClick={() => setIsOpenCustomer(false)}><AiFillCloseSquare size={30} color={"#212529"}/></button>
+                    <button ref={buttonRef} onClick={() => setIsOpenCustomer(false)}><AiFillCloseSquare size={30} color={"#212529"} /></button>
                 </StyledTitleButton>
 
                 <StyledForm onSubmit={handleSubmit(submit)}>
